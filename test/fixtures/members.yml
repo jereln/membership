@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  group_id: 1
+  person_id: 1
+  role: MyString
+  joined: 2014-10-02
+
+two:
+  group_id: 1
+  person_id: 1
+  role: MyString
+  joined: 2014-10-02

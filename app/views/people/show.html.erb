@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @person.name %>
+</p>
+<p>Groups in:</p>
+<ul>
+<% if @person.members.any? %>    
+<% @person.members.each do |member| %>
+  <li><%= member.group.name %></li>
+  <% end %>
+<% end %>
+</ul>
+
+<%= link_to 'Edit', edit_person_path(@person) %> |
+<%= link_to 'Back', people_path %>
+
+<p>Join a Group</p>
+
+<%= render 'join_group' %>
