@@ -10,6 +10,5 @@ module ActiveSupport
     ActiveRecord::Migration.check_pending!
 
     fixtures :all
-
   end
 end

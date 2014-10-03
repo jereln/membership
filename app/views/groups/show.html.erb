@@ -11,6 +11,7 @@
 <% @group.members.each do |member| %>
   <li><strong><%= member.person.name %> </strong>
     - <%= member.role %></li>
+    <%= link_to 'Remove from group', member, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
 <% end %>
 </ul>

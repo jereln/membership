@@ -26,35 +26,45 @@ class MembersController < ApplicationController
   # POST /members
   def create
     @member = Member.new(member_params)
-      if @member.save
-        redirect_to @member, notice: 'Member was successfully created.'
+    if @member.save
+      if request.referer.include?('/group')
+        redirect_to groups_path, notice: 'Member was successfully added.'
       else
-        render :new
+        redirect_to people_path, notice: 'Member was successfully added.'
       end
+    else
+      render :new
+    end
   end
 
   # PATCH/PUT /members/1
   def update
-      if @member.update(member_params)
-        redirect_to @member, notice: 'Member was successfully updated.'
-      else
-        render :edit
-      end
+    if @member.update(member_params)
+      redirect_to root_path, notice: 'Member was successfully updated.'
+    else
+      render :edit
+    end
   end
 
   # DELETE /members/1
   # DELETE /members/1.json
   def destroy
     @member.destroy
-      redirect_to members_url, notice: 'Member was successfully destroyed.'
+    if request.referer.include?('/group')
+      redirect_to groups_path, notice: 'Membership revoked!'
+    else
+      redirect_to people_path, notice: 'Membership revoked!'
+    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_member
-      @member = Member.find(params[:id])
-    end
-    def member_params
-      params.require(:member).permit(:group_id, :person_id, :role, :joined)
-    end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_member
+    @member = Member.find(params[:id])
+  end
+
+  def member_params
+    params.require(:member).permit(:group_id, :person_id, :role, :joined)
+  end
 end

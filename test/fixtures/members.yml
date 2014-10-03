@@ -8,6 +8,13 @@ one:
 
 two:
   group_id: 1
+  person_id: 2
+  role: MyString
+  joined: 2014-10-02
+
+three:
+  group_id: 2
   person_id: 1
   role: MyString
   joined: 2014-10-02
+

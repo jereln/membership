@@ -8,7 +8,7 @@
 <ul>
 <% if @person.members.any? %>    
 <% @person.members.each do |member| %>
-  <li><%= member.group.name %></li>
+  <li><%= member.group.name %></li><%= link_to 'Leave group', member, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
 <% end %>
 </ul>
