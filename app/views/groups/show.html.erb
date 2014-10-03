@@ -1,14 +1,23 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @group.name %>
-</p>
+  <h1><%= @group.name %></h1>
 
 <p>
   <strong>Description:</strong>
   <%= @group.description %>
 </p>
+<p>Group members:</p>
+<ul>
+<% if @group.members.any? %>
+<% @group.members.each do |member| %>
+  <li><strong><%= member.person.name %> </strong>
+    - <%= member.role %></li>
+    <%= link_to 'Remove from group', member, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+<% end %>
+</ul>
 
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>
+
+<p>Add a Member</p>
+<%= render 'add_member' %>
